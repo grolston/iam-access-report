@@ -3,8 +3,6 @@ foreach($role in $Roles.RoleDetailList){
     $jobId = Request-IAMServiceLastAccessedDetail -Arn $role.Arn -Granularity ACTION_LEVEL # SERVICE_LEVEL
     Start-Sleep -Seconds 5
     $accessDetails = Get-IAMServiceLastAccessedDetail -JobId $jobId
-    $Name = $role.RoleName
-    $CreateDate = $role.CreateDate
     [string]$GroupList = $($role.InstanceProfileList -Join ";")
     foreach ($accessDetail in $accessDetails){
         foreach($servicedetail in $accessDetail.ServicesLastAccessed){
@@ -15,5 +13,4 @@ foreach($role in $Roles.RoleDetailList){
 
         }
     }
-
 }
