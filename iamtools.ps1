@@ -1,7 +1,7 @@
 $Roles = Get-IAMAccountAuthorizationDetail -Filter Role
 foreach($role in $Roles.RoleDetailList){
     $jobId = Request-IAMServiceLastAccessedDetail -Arn $role.Arn -Granularity ACTION_LEVEL # SERVICE_LEVEL
-    sleep -Seconds 5
+    Start-Sleep -Seconds 5
     $accessDetails = Get-IAMServiceLastAccessedDetail -JobId $jobId
     $Name = $role.RoleName
     $CreateDate = $role.CreateDate
