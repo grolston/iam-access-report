@@ -1,3 +1,4 @@
+$AccessReport = @()
 $Roles = Get-IAMAccountAuthorizationDetail -Filter Role
 foreach($role in $Roles.RoleDetailList){
     $jobId = Request-IAMServiceLastAccessedDetail -Arn $role.Arn -Granularity ACTION_LEVEL # SERVICE_LEVEL
@@ -9,17 +10,18 @@ foreach($role in $Roles.RoleDetailList){
         #$accessDetail.ServicesLastAccessed
         foreach($servicedetail in $accessDetail.ServicesLastAccessed){
             if($servicedetail.TrackedActionsLastAccessed.Count -GT 0){
-                $servicedetail.TrackedActionsLastAccessed
+                #$servicedetail.TrackedActionsLastAccessed
+                $AccessReport += $servicedetail.TrackedActionsLastAccessed | Select-Object -Property @{label='Type'; expression={"Role"}}, @{label='Name'; expression={$role.RoleName}}, `
+                @{label='CreateDate'; expression={$role.CreateDate}} , @{label='IamId'; expression={$role.Id}}, `
+                @{label='ServiceName'; expression={$servicedetail.ServiceName}}, `
+                 ActionName, LastAccessedEntity, LastAccessedTime
             }
-        #     # $accessDetails[1].ServicesLastAccessed | where -Property TotalAuthenticatedEntities -EQ 0
-        #     #write-host $servicedetail
-        #     # $AccessReport += $servicedetail | Select-Object -Property @{label='Type'; expression={"Role"}}, @{label='Name'; expression={$role.RoleName}}, `
-        #     #     @{label='CreateDate'; expression={$role.CreateDate}} , @{label='IamId'; expression={$role.Id}}, `
-        #     #     @{label='Groups'; expression={$GroupList}}, ServiceName, LastAuthenticated
+
         }
         }
     }
 }
+$AccessReport
 
 # ActionName         : DescribeHostReservationOfferings
 # LastAccessedEntity :
