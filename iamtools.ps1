@@ -8,16 +8,18 @@ foreach($role in $Roles.RoleDetailList){
     foreach ($accessDetail in $accessDetails){
         if($accessDetail.ServicesLastAccessed.Count -GT 0){
         #$accessDetail.ServicesLastAccessed
-        foreach($servicedetail in $accessDetail.ServicesLastAccessed){
-            if($servicedetail.TrackedActionsLastAccessed.Count -GT 0){
-                #$servicedetail.TrackedActionsLastAccessed
-                $AccessReport += $servicedetail.TrackedActionsLastAccessed | Select-Object -Property @{label='Type'; expression={"Role"}}, @{label='Name'; expression={$role.RoleName}}, `
-                @{label='CreateDate'; expression={$role.CreateDate}} , @{label='IamId'; expression={$role.Id}}, `
-                @{label='ServiceName'; expression={$servicedetail.ServiceName}}, `
-                 ActionName, LastAccessedEntity, LastAccessedTime
+            foreach($servicedetail in $accessDetail.ServicesLastAccessed){
+                if($servicedetail.TrackedActionsLastAccessed.Count -GT 0){
+                    #$servicedetail.TrackedActionsLastAccessed
+                    $AccessReport += $servicedetail.TrackedActionsLastAccessed | Select-Object -Property @{label='Type'; expression={"Role"}}, `
+                        @{label='Name'; expression={$role.RoleName}}, `
+                        @{label='CreateDate'; expression={$role.CreateDate}} , `
+                        @{label='IamId'; expression={$role.RoleId}}, `
+                        @{label='ARN'; expression={$role.RoleArn}}, `
+                        @{label='ServiceName'; expression={$servicedetail.ServiceName}}, `
+                        ActionName, LastAccessedEntity, LastAccessedTime
+                }
             }
-
-        }
         }
     }
 }
