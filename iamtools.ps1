@@ -6,7 +6,7 @@ foreach($role in $Roles.RoleDetailList){
     [string]$GroupList = $($role.InstanceProfileList -Join ";")
     foreach ($accessDetail in $accessDetails){
         if($accessDetail.ServicesLastAccessed.Count -GT 0){
-        $accessDetail.ServicesLastAccessed
+        #$accessDetail.ServicesLastAccessed
         foreach($servicedetail in $accessDetail.ServicesLastAccessed){
             if($servicedetail.TrackedActionsLastAccessed.Count -GT 0){
                 $servicedetail.TrackedActionsLastAccessed
@@ -20,3 +20,8 @@ foreach($role in $Roles.RoleDetailList){
         }
     }
 }
+
+# ActionName         : DescribeHostReservationOfferings
+# LastAccessedEntity :
+# LastAccessedRegion :
+# LastAccessedTime   : 1/1/0001 12:00:00 AM
