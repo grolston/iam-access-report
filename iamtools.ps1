@@ -6,14 +6,17 @@ foreach($role in $Roles.RoleDetailList){
     [string]$GroupList = $($role.InstanceProfileList -Join ";")
     foreach ($accessDetail in $accessDetails){
         if($accessDetail.ServicesLastAccessed.Count -GT 0){
-        $accessDetail.ServicesLastAccessed }
+        $accessDetail.ServicesLastAccessed
         foreach($servicedetail in $accessDetail.ServicesLastAccessed){
-            # $accessDetails[1].ServicesLastAccessed | where -Property TotalAuthenticatedEntities -EQ 0
-            #write-host $servicedetail
-            # $AccessReport += $servicedetail | Select-Object -Property @{label='Type'; expression={"Role"}}, @{label='Name'; expression={$role.RoleName}}, `
-            #     @{label='CreateDate'; expression={$role.CreateDate}} , @{label='IamId'; expression={$role.Id}}, `
-            #     @{label='Groups'; expression={$GroupList}}, ServiceName, LastAuthenticated
-
+            if($servicedetail.TrackedActionsLastAccessed.Count -GT 0){
+                $servicedetail.TrackedActionsLastAccessed
+            }
+        #     # $accessDetails[1].ServicesLastAccessed | where -Property TotalAuthenticatedEntities -EQ 0
+        #     #write-host $servicedetail
+        #     # $AccessReport += $servicedetail | Select-Object -Property @{label='Type'; expression={"Role"}}, @{label='Name'; expression={$role.RoleName}}, `
+        #     #     @{label='CreateDate'; expression={$role.CreateDate}} , @{label='IamId'; expression={$role.Id}}, `
+        #     #     @{label='Groups'; expression={$GroupList}}, ServiceName, LastAuthenticated
+        }
         }
     }
 }
