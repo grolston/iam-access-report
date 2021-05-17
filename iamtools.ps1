@@ -2,7 +2,7 @@ $AccessReport = @()
 $Roles = Get-IAMAccountAuthorizationDetail -Filter Role
 foreach($role in $Roles.RoleDetailList){
     $jobId = Request-IAMServiceLastAccessedDetail -Arn $role.Arn -Granularity ACTION_LEVEL # SERVICE_LEVEL
-    Start-Sleep -Seconds 5
+    Start-Sleep -Seconds 2
     $accessDetails = Get-IAMServiceLastAccessedDetail -JobId $jobId
     [string]$GroupList = $($role.InstanceProfileList -Join ";")
     foreach ($accessDetail in $accessDetails){
