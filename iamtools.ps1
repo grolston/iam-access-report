@@ -15,7 +15,7 @@ foreach($role in $Roles.RoleDetailList){
                         @{label='Name'; expression={$role.RoleName}}, `
                         @{label='CreateDate'; expression={$role.CreateDate}} , `
                         @{label='IamId'; expression={$role.RoleId}}, `
-                        @{label='ARN'; expression={$role.RoleArn}}, `
+                        @{label='Arn'; expression={$role.Arn}}, `
                         @{label='ServiceName'; expression={$servicedetail.ServiceName}}, `
                         ActionName, LastAccessedEntity, LastAccessedTime
                 }
