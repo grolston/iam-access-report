@@ -7,7 +7,7 @@ foreach($role in $Roles.RoleDetailList){
     foreach ($accessDetail in $accessDetails){
         foreach($servicedetail in $accessDetail.ServicesLastAccessed){
             # $accessDetails[1].ServicesLastAccessed | where -Property TotalAuthenticatedEntities -EQ 0
-            $servicedetail
+            write-host $servicedetail
             # $AccessReport += $servicedetail | Select-Object -Property @{label='Type'; expression={"Role"}}, @{label='Name'; expression={$role.RoleName}}, `
             #     @{label='CreateDate'; expression={$role.CreateDate}} , @{label='IamId'; expression={$role.Id}}, `
             #     @{label='Groups'; expression={$GroupList}}, ServiceName, LastAuthenticated
