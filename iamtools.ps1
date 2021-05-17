@@ -5,7 +5,8 @@ foreach($role in $Roles.RoleDetailList){
     $accessDetails = Get-IAMServiceLastAccessedDetail -JobId $jobId
     [string]$GroupList = $($role.InstanceProfileList -Join ";")
     foreach ($accessDetail in $accessDetails){
-        $accessDetail.ServicesLastAccessed
+        if($accessDetail.ServicesLastAccessed.Count -GT 0){
+        $accessDetail.ServicesLastAccessed }
         foreach($servicedetail in $accessDetail.ServicesLastAccessed){
             # $accessDetails[1].ServicesLastAccessed | where -Property TotalAuthenticatedEntities -EQ 0
             #write-host $servicedetail
