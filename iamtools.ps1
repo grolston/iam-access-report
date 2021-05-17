@@ -23,9 +23,6 @@ foreach($role in $Roles.RoleDetailList){
         }
     }
 }
-$AccessReport
-
-# ActionName         : DescribeHostReservationOfferings
-# LastAccessedEntity :
-# LastAccessedRegion :
-# LastAccessedTime   : 1/1/0001 12:00:00 AM
+$file = "./IamAccessReport-$($($(Get-Date).ToShortDateString()).Replace('/', '-')).csv"
+$AccessReport | Export-Csv $file -NoTypeInformation
+Write-Host "Download your report at: $file"
