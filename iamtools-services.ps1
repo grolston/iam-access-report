@@ -1,4 +1,4 @@
-if(!(Get-Module AWS.Tools.IdentityManagement)){Install-Module AWS.Tools.IdentityManagement -confirm:$false -force}
+if(!(Get-InstalledModule AWS.Tools.IdentityManagement)){Install-Module AWS.Tools.IdentityManagement -confirm:$false -force}
 IPMO AWS.Tools.IdentityManagement
 $AccessReport = @()
 $Granularity = 'SERVICE_LEVEL'
@@ -11,7 +11,7 @@ foreach($role in $Roles.RoleDetailList){
         if($accessDetail.ServicesLastAccessed.Count -GT 0){
         #$accessDetail.ServicesLastAccessed
             foreach($servicedetail in $accessDetail.ServicesLastAccessed){
-              $servicedetail
+                $servicedetail
                 # if($servicedetail.TrackedActionsLastAccessed.Count -GT 0){
                 #     #$servicedetail.TrackedActionsLastAccessed
                 #     # $AccessReport += $servicedetail.TrackedActionsLastAccessed | Select-Object -Property @{label='Type'; expression={"Role"}}, `
