@@ -11,8 +11,8 @@ foreach($role in $Roles.RoleDetailList){
         if($accessDetail.ServicesLastAccessed.Count -GT 0){
 
             foreach($servicedetail in $accessDetail.ServicesLastAccessed){
-              $accessDetail
-                #$servicedetail
+              #$accessDetail this is the per report
+              $servicedetail
                 # if($servicedetail.TrackedActionsLastAccessed.Count -GT 0){
                 #     #$servicedetail.TrackedActionsLastAccessed
                 #     # $AccessReport += $servicedetail.TrackedActionsLastAccessed | Select-Object -Property @{label='Type'; expression={"Role"}}, `
