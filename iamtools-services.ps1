@@ -9,7 +9,6 @@ foreach($role in $Roles.RoleDetailList){
     $accessDetails = Get-IAMServiceLastAccessedDetail -JobId $jobId
     foreach ($accessDetail in $accessDetails){
         if($accessDetail.ServicesLastAccessed.Count -GT 0){
-
             foreach($servicedetail in $accessDetail.ServicesLastAccessed){
               #$accessDetail this is the per report
               $servicedetail
