@@ -9,9 +9,10 @@ foreach($role in $Roles.RoleDetailList){
     $accessDetails = Get-IAMServiceLastAccessedDetail -JobId $jobId
     foreach ($accessDetail in $accessDetails){
         if($accessDetail.ServicesLastAccessed.Count -GT 0){
-        #$accessDetail.ServicesLastAccessed
+
             foreach($servicedetail in $accessDetail.ServicesLastAccessed){
-                $servicedetail
+              $accessDetail
+                #$servicedetail
                 # if($servicedetail.TrackedActionsLastAccessed.Count -GT 0){
                 #     #$servicedetail.TrackedActionsLastAccessed
                 #     # $AccessReport += $servicedetail.TrackedActionsLastAccessed | Select-Object -Property @{label='Type'; expression={"Role"}}, `
@@ -26,6 +27,6 @@ foreach($role in $Roles.RoleDetailList){
         }
     }
 }
-$file = "./IamAccessReport-$($($(Get-Date).ToShortDateString()).Replace('/', '-')).csv"
+$file = "./IamAccessReport-$Granularity-$($($(Get-Date).ToShortDateString()).Replace('/', '-')).csv"
 $AccessReport | Export-Csv $file -NoTypeInformation
 Write-Host "Download your report at: $file"
