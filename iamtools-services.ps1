@@ -3,10 +3,13 @@ IPMO AWS.Tools.IdentityManagement
 $AccessReport = @()
 $Granularity = 'SERVICE_LEVEL'
 $Roles = Get-IAMAccountAuthorizationDetail -Filter Role
+$RolesCount = $Roles.RoleDetailList.Count
+$iterator = 1
 foreach($role in $Roles.RoleDetailList){
     $jobId = Request-IAMServiceLastAccessedDetail -Arn $role.Arn -Granularity $Granularity
     Start-Sleep -Seconds 3
     $accessDetails = Get-IAMServiceLastAccessedDetail -JobId $jobId
+    write-host "Analyzing IAM Role $iterator of $RolesCount - $($role.RoleName)"
     foreach ($accessDetail in $accessDetails){
         if($accessDetail.ServicesLastAccessed.Count -GT 0){
             foreach($servicedetail in $accessDetail.ServicesLastAccessed){
@@ -22,6 +25,7 @@ foreach($role in $Roles.RoleDetailList){
                 }
             }
         }
+        $iterator++
     }
 $file = "./IamAccessReport-$Granularity-$($($(Get-Date).ToShortDateString()).Replace('/', '-')).csv"
 $AccessReport | Export-Csv $file -NoTypeInformation

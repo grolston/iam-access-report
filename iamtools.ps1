@@ -1,16 +1,18 @@
 $AccessReport = @()
+$Granularity = 'ACTION_LEVEL'
 $Roles = Get-IAMAccountAuthorizationDetail -Filter Role
+$RolesCount = $Roles.RoleDetailList.Count
+$iterator = 1
 foreach($role in $Roles.RoleDetailList){
-    $jobId = Request-IAMServiceLastAccessedDetail -Arn $role.Arn -Granularity ACTION_LEVEL # SERVICE_LEVEL
+    $jobId = Request-IAMServiceLastAccessedDetail -Arn $role.Arn -Granularity $Granularity
     Start-Sleep -Seconds 3
     $accessDetails = Get-IAMServiceLastAccessedDetail -JobId $jobId
-    [string]$GroupList = $($role.InstanceProfileList -Join ";")
+    write-host "Analyzing IAM Role $iterator of $RolesCount - $($role.RoleName)"
     foreach ($accessDetail in $accessDetails){
         if($accessDetail.ServicesLastAccessed.Count -GT 0){
         #$accessDetail.ServicesLastAccessed
             foreach($servicedetail in $accessDetail.ServicesLastAccessed){
                 if($servicedetail.TrackedActionsLastAccessed.Count -GT 0){
-                    #$servicedetail.TrackedActionsLastAccessed
                     $AccessReport += $servicedetail.TrackedActionsLastAccessed | Select-Object -Property @{label='Type'; expression={"Role"}}, `
                         @{label='Name'; expression={$role.RoleName}}, `
                         @{label='CreateDate'; expression={$role.CreateDate}} , `
@@ -22,6 +24,7 @@ foreach($role in $Roles.RoleDetailList){
             }
         }
     }
+    $iterator++
 }
 $file = "./IamAccessReport-$($($(Get-Date).ToShortDateString()).Replace('/', '-')).csv"
 $AccessReport | Export-Csv $file -NoTypeInformation
