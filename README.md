@@ -2,7 +2,7 @@
 
 To leverage the project, open the AWS CloudShell and start up PowerShell by typing in `pwsh`. Output should looks as follows:
 
-```bash
+```sh
 [cloudshell-user@ip-10-0-189-133 ~]$ pwsh
 PowerShell 7.0.5
 Copyright (c) Microsoft Corporation. All rights reserved.
