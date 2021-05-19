@@ -35,3 +35,6 @@ iex (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com
 ```
 
 
+## How To Download Report
+
+Running the one-liners above will generate a csv report within your current working directory. The name of the report is written to the console immediately before the analysis is complete. Using the Actions button located in the top right of the CloudShell you can select `File > Download file` which you will need to either type or paste in the file name listed at the end of running the script.

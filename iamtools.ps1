@@ -3,6 +3,7 @@ $Granularity = 'ACTION_LEVEL'
 $Roles = Get-IAMAccountAuthorizationDetail -Filter Role
 $RolesCount = $Roles.RoleDetailList.Count
 $iterator = 1
+write-host "Analyzing IAM Roles at $Granularity"
 foreach($role in $Roles.RoleDetailList){
     $jobId = Request-IAMServiceLastAccessedDetail -Arn $role.Arn -Granularity $Granularity
     Start-Sleep -Seconds 3
