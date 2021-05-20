@@ -1,4 +1,4 @@
-IPMO AWSPowershell.NetCore
+Import-Module AWSPowershell.NetCore
 $AccessReport = @()
 $Granularity = 'SERVICE_LEVEL'
 $Roles = Get-IAMAccountAuthorizationDetail -Filter Role
