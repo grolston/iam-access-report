@@ -1,6 +1,6 @@
 # IAM Tools For AWS CloudShell
 
-To leverage the project, open the AWS CloudShell and start up PowerShell by typing in `pwsh`. Output should looks as follows:
+To leverage the project, open the AWS CloudShell and start up PowerShell by typing in `pwsh` then hitting enter. Output should looks as follows:
 
 ```sh
 [cloudshell-user@ip-10-0-189-133 ~]$ pwsh
