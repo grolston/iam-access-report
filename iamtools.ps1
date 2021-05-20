@@ -1,3 +1,5 @@
+if(!(Get-InstalledModule AWS.Tools.IdentityManagement -ErrorAction SilentlyContinue)){Install-Module AWS.Tools.IdentityManagement -confirm:$false -force}
+IPMO AWS.Tools.IdentityManagement
 $AccessReport = @()
 $Granularity = 'ACTION_LEVEL'
 $Roles = Get-IAMAccountAuthorizationDetail -Filter Role
