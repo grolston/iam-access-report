@@ -1,5 +1,10 @@
 if(!(Get-InstalledModule AWS.Tools.IdentityManagement -ErrorAction SilentlyContinue)){Install-Module AWS.Tools.IdentityManagement -confirm:$false -force}
-IPMO AWS.Tools.IdentityManagement 3>$null
+## Grab WarningPref to return later
+$UserEnvWarningPref = $WarningPreference
+$WarningPreference = "SilentlyContinue"
+IPMO AWS.Tools.IdentityManagement
+## Return WarningPref
+$WarningPreference = $UserEnvWarningPref
 $AccessReport = @()
 $Granularity = 'SERVICE_LEVEL'
 $Roles = Get-IAMAccountAuthorizationDetail -Filter Role
