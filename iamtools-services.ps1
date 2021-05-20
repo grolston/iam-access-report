@@ -1,8 +1,4 @@
-if(!(Get-InstalledModule AWS.Tools.IdentityManagement -ErrorAction SilentlyContinue)){Install-Module AWS.Tools.IdentityManagement -confirm:$false -force}
-## Grab WarningPref to return later
-$UserEnvWarningPref = $WarningPreference
-$WarningPreference = "SilentlyContinue"
-IPMO AWS.Tools.IdentityManagement
+IPMO AWSPowershell.NetCore
 ## Return WarningPref
 $WarningPreference = $UserEnvWarningPref
 $AccessReport = @()
