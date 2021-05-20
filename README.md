@@ -22,7 +22,8 @@ PS /home/cloudshell-user>
 The Service-Level granularity creates a report of AWS services accessed by the IAM Role.
 
 ```powershell
-iex (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/grolston/iam-access-report/master/iamtools-services.ps1')
+## dev branch
+iex (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/grolston/iam-access-report/dev/iamtools-services.ps1')
 ```
 
 ## Action-Level Granularity
@@ -31,7 +32,8 @@ iex (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com
 The Action-Level granularity creates a report of AWS services and the service actions accessed by the IAM Role.
 
 ```powershell
-iex (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/grolston/iam-access-report/master/iamtools.ps1')
+## dev branch
+iex (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/grolston/iam-access-report/dev/iamtools.ps1')
 ```
 
 
