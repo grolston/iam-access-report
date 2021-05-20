@@ -1,6 +1,4 @@
 IPMO AWSPowershell.NetCore
-## Return WarningPref
-$WarningPreference = $UserEnvWarningPref
 $AccessReport = @()
 $Granularity = 'SERVICE_LEVEL'
 $Roles = Get-IAMAccountAuthorizationDetail -Filter Role
